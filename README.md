@@ -31,4 +31,11 @@ When using docker networks you will want to attach to the dynamic interfaces tha
 can differ on different systems, when on linux these connections are those that often start
 with `veth...`
 
+## Adding to the zone
+
+You can add a new entry to the zone by using the `nsupdate` command.
+
+    nsupdate
+    > update add client.resero-dns.com 86400 A 172.20.0.5
+    > send
 

@@ -11,5 +11,10 @@ zone "resero-dns.com" {
     type master;
     file "/etc/bind/zones/db.resero-dns.com";
     allow-transfer { 172.20.0.3; };
+
+    // demonstration of using nsupdate to add another entry
+    //   don't use a cidr to allow anyone to update though, this
+    //   works but it is a super security risk
+    allow-update { 172.20.0.0/16; };
 };
 
