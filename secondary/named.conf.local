@@ -1,0 +1,6 @@
+zone "resero-dns.com" {
+    type slave;
+    file "/etc/bind/zones/db.resero-dns.com";
+    masters { 172.20.0.2; };
+};
+

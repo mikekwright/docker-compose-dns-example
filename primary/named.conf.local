@@ -1,0 +1,6 @@
+zone "resero-dns.com" {
+    type master;
+    file "/etc/bind/zones/db.resero-dns.com";
+    allow-transfer { 172.20.0.3; };
+};
+

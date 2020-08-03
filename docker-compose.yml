@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+
+  primary:
+    build:
+      context: primary
+      dockerfile: Dockerfile
+    networks:
+      dns_net:
+        ipv4_address: 172.20.0.2
+  secondary:
+    build:
+      context: secondary
+      dockerfile: Dockerfile
+    networks:
+      dns_net:
+        ipv4_address: 172.20.0.3
+    links:
+      - primary
+  server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    networks:
+      dns_net:
+        ipv4_address: 172.20.0.4
+    links:
+      - primary
+      - secondary
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    networks:
+      - dns_net
+    dns:
+      - 172.20.0.2
+      - 172.20.0.3
+    links:
+      - primary
+      - secondary
+      - server
+
+networks:
+  dns_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+
