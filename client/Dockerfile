@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 RUN apt-get update \
   && apt-get install -y \
@@ -6,10 +6,6 @@ RUN apt-get update \
   vim \
   dnsutils
 
-ADD entrypoint.sh /entrypoint.sh
-ADD resolv.conf /net/resolv.conf
-
 # Run eternal loop
-#CMD ["/entrypoint.sh"]
 CMD ["/bin/bash", "-c", "while :; do sleep 10; done"]
 

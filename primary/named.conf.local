@@ -1,3 +1,12 @@
+logging {
+    channel debug_query {
+        stderr;
+        severity dynamic;
+    };
+
+    category queries { debug_query; };
+};
+
 zone "resero-dns.com" {
     type master;
     file "/etc/bind/zones/db.resero-dns.com";

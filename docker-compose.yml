@@ -5,6 +5,8 @@ services:
     build:
       context: primary
       dockerfile: Dockerfile
+    ports:
+      - "8053:53"
     networks:
       dns_net:
         ipv4_address: 172.20.0.2

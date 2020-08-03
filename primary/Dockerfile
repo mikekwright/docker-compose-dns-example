@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 RUN apt-get update \
   && apt-get install -y \
@@ -6,10 +6,7 @@ RUN apt-get update \
   bind9utils \
   bind9-doc
 
-# Enable IPv4
-RUN sed -i 's/OPTIONS=.*/OPTIONS="-4 -u bind"/' /etc/default/bind9
-
-# Copy configuration files
+COPY bind.conf /etc/default/bind9
 COPY named.conf.options /etc/bind/
 COPY named.conf.local /etc/bind/
 COPY db.resero-dns.com /etc/bind/zones/
